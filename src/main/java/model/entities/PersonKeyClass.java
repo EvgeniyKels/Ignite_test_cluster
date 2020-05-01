@@ -2,15 +2,16 @@ package model.entities;
 
 import org.apache.ignite.cache.query.annotations.QuerySqlField;
 
-import java.sql.Timestamp;
+import java.io.Serializable;
+import java.util.Date;
 
-public class PersonKeyClass {
+public class PersonKeyClass implements Serializable {
     @QuerySqlField
     private String id;
     @QuerySqlField
     private String name;
     @QuerySqlField
-    private Timestamp datebirth;
+    private Date datebirth;
     @QuerySqlField
     private boolean isMarried;
     @QuerySqlField
@@ -21,7 +22,7 @@ public class PersonKeyClass {
     public PersonKeyClass() {
     }
 
-    public PersonKeyClass(String id, String name, Timestamp datebirth, boolean isMarried, String telephone, int age) {
+    public PersonKeyClass(String id, String name, Date datebirth, boolean isMarried, String telephone, int age) {
         this.id = id;
         this.name = name;
         this.datebirth = datebirth;
@@ -34,23 +35,60 @@ public class PersonKeyClass {
         return id;
     }
 
+    public void setId(String id) {
+        this.id = id;
+    }
+
     public String getName() {
         return name;
     }
 
-    public Timestamp getDatebirth() {
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public Date getDatebirth() {
         return datebirth;
+    }
+
+    public void setDatebirth(Date datebirth) {
+        this.datebirth = datebirth;
     }
 
     public boolean isMarried() {
         return isMarried;
     }
 
+    public void setMarried(boolean married) {
+        isMarried = married;
+    }
+
     public String getTelephone() {
         return telephone;
     }
 
+    public void setTelephone(String telephone) {
+        this.telephone = telephone;
+    }
+
     public int getAge() {
         return age;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
+    }
+
+    @Override
+    public String toString() {
+        return "model.entities.PersonKeyClass{" +
+                "id='" + id + '\'' +
+                ", name='" + name + '\'' +
+                ", datebirth=" + datebirth +
+                ", isMarried=" + isMarried +
+                ", telephone='" + telephone + '\'' +
+                ", age=" + age +
+                ", married=" + isMarried() +
+                '}';
     }
 }

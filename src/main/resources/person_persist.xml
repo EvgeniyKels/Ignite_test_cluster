@@ -1,4 +1,4 @@
-<persistence keyspace="IgniteTestCluster" table="Persons">
+<persistence keyspace="bom" table="Persons">
     <keyPersistence class="model.entities.PersonKeyClass" strategy="POJO">
         <partitionKey>
             <field name="id" column="id"/>

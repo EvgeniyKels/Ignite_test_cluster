@@ -5,6 +5,7 @@
 
     <bean class="org.apache.ignite.cache.store.cassandra.datasource.DataSource" name="cassandra">
         <property name="contactPoints" value="127.0.0.1"/>
+        <property name="port" value="9042" />
     </bean>
 
     <bean class="org.apache.ignite.configuration.IgniteConfiguration">
@@ -12,6 +13,9 @@
             <list>
                 <bean class="org.apache.ignite.configuration.CacheConfiguration">
                     <property name="name" value="PersonCache"/>
+                    <property name="readThrough" value="true"/>
+<!--                    <property name="writeThrough" value="true"/>   -->
+                    <property name="sqlSchema" value="person_schema"/>
                     <property name="indexedTypes">
                         <list>
                             <value type="java.lang.Class">model.entities.PersonKeyClass</value>
@@ -26,6 +30,17 @@
                     </property>
                 </bean>
             </list>
+        </property>
+        <!-- Enabling Apache Ignite native persistence. -->
+        <property name="dataStorageConfiguration">
+            <bean class="org.apache.ignite.configuration.DataStorageConfiguration">
+                <property name="defaultDataRegionConfiguration">
+                    <bean class="org.apache.ignite.configuration.DataRegionConfiguration">
+                        <property name="persistenceEnabled" value="false"/>
+                    </bean>
+                </property>
+                <property name="storagePath" value="/dir/"/>
+            </bean>
         </property>
     </bean>
 
