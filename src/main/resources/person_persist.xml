@@ -1,5 +1,5 @@
 <persistence keyspace="bom" table="Persons">
-    <keyPersistence class="model.entities.PersonKeyClass" strategy="POJO">
+    <keyPersistence class="kls.ignitenode.model.entities.PersonKeyClass" strategy="POJO">
         <partitionKey>
             <field name="id" column="id"/>
             <field name="name" column="name"/>
@@ -11,7 +11,7 @@
             <field name="age" column="age"/>
         </clusterKey>
     </keyPersistence>
-    <valuePersistence class="model.entities.Person" strategy="POJO">
+    <valuePersistence class="kls.ignitenode.model.entities.Person" strategy="POJO">
         <field name="count" column="count"/>
         <field name="timestamp" column="timestamp"/>
     </valuePersistence>

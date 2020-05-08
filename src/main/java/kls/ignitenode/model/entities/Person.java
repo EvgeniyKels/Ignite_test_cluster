@@ -1,4 +1,4 @@
-package model.entities;
+package kls.ignitenode.model.entities;
 
 import org.apache.ignite.cache.query.annotations.QuerySqlField;
 

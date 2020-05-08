@@ -12,3 +12,4 @@ buildNumber.properties
 .idea
 IgniteCluster.iml
 ignite
+application.properties
