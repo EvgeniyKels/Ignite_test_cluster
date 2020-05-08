@@ -9,6 +9,18 @@
     </bean>
 
     <bean class="org.apache.ignite.configuration.IgniteConfiguration">
+        <!-- Enabling Apache Ignite native persistence. -->
+        <property name="dataStorageConfiguration">
+            <bean class="org.apache.ignite.configuration.DataStorageConfiguration">
+                <property name="defaultDataRegionConfiguration">
+                    <bean class="org.apache.ignite.configuration.DataRegionConfiguration">
+                        <property name="persistenceEnabled" value="false"/>
+                    </bean>
+                </property>
+                <property name="storagePath" value="G:/dir"/>
+            </bean>
+        </property>
+
         <property name="cacheConfiguration">
             <list>
                 <bean class="org.apache.ignite.configuration.CacheConfiguration">
@@ -30,17 +42,6 @@
                     </property>
                 </bean>
             </list>
-        </property>
-        <!-- Enabling Apache Ignite native persistence. -->
-        <property name="dataStorageConfiguration">
-            <bean class="org.apache.ignite.configuration.DataStorageConfiguration">
-                <property name="defaultDataRegionConfiguration">
-                    <bean class="org.apache.ignite.configuration.DataRegionConfiguration">
-                        <property name="persistenceEnabled" value="false"/>
-                    </bean>
-                </property>
-                <property name="storagePath" value="/dir/"/>
-            </bean>
         </property>
     </bean>
 

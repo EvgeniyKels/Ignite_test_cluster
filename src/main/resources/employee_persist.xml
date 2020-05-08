@@ -1,18 +1,14 @@
-<persistence keyspace="bom" table="Persons">
-    <keyPersistence class="model.entities.PersonKeyClass" strategy="POJO">
+<persistence keyspace="bom" table="employees">
+    <keyPersistence class="model.entities.EmployeesKeyClass" strategy="POJO">
         <partitionKey>
             <field name="id" column="id"/>
             <field name="name" column="name"/>
-            <field name="datebirth" column="datebirth"/>
         </partitionKey>
         <clusterKey>
-            <field name="isMarried" column="ismarried"/>
-            <field name="telephone" column="telephone"/>
-            <field name="age" column="age"/>
+            <field name="datebirth" column="datebirth"/>
         </clusterKey>
     </keyPersistence>
-    <valuePersistence class="model.entities.Person" strategy="POJO">
+    <valuePersistence class="model.entities.Employees" strategy="POJO">
         <field name="count" column="count"/>
-        <field name="timestamp" column="timestamp"/>
     </valuePersistence>
 </persistence>
