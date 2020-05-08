@@ -42,22 +42,15 @@ public class TestNodeConfiguration {
 
     @Bean
     CassandraCacheStoreFactory cassandraCacheStoreFactory () {
-        CassandraCacheStoreFactory cassandraCacheStoreFactory = new CassandraCacheStoreFactory();
-        cassandraCacheStoreFactory.setDataSource(dataSourceConfiguration());
-        cassandraCacheStoreFactory.setPersistenceSettings(keyValuePersistenceSettings());
-        return null;
-    }
-
-    @Bean
-    KeyValuePersistenceSettings keyValuePersistenceSettings () {
         String persistenceSettingXml = null;
         try {
             persistenceSettingXml = FileUtils.readFileToString(new File(pathToPersonSettingsXML), "utf-8");
         } catch (IOException e) {
             e.printStackTrace();
         }
-        KeyValuePersistenceSettings keyValuePersistenceSettings = new KeyValuePersistenceSettings(persistenceSettingXml);
-        return keyValuePersistenceSettings;
+        CustomCassandraCacheStoreFactory cassandraCacheStoreFactory = new CustomCassandraCacheStoreFactory(persistenceSettingXml);
+        cassandraCacheStoreFactory.setDataSource(dataSourceConfiguration());
+        return cassandraCacheStoreFactory;
     }
 
     @Bean

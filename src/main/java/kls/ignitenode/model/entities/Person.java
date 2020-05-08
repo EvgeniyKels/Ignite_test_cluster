@@ -3,7 +3,6 @@ package kls.ignitenode.model.entities;
 import org.apache.ignite.cache.query.annotations.QuerySqlField;
 
 import java.io.Serializable;
-import java.sql.Timestamp;
 import java.util.Date;
 import java.util.Objects;
 
