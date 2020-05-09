@@ -15,7 +15,7 @@ import org.springframework.core.io.Resource;
 
 import java.io.File;
 import java.io.IOException;
-
+//TODO partition node
 @Configuration
 public class TestNodeConfiguration {
     @Value("${cassandraContactPoint}")
@@ -59,12 +59,13 @@ public class TestNodeConfiguration {
         igniteConfiguration.setClientMode(false);
         if (enableFilePersistence) {
             DataStorageConfiguration nativePersistence = new DataStorageConfiguration();
+            nativePersistence.getDefaultDataRegionConfiguration().setPersistenceEnabled(enableFilePersistence);
             nativePersistence.setStoragePath(storagePath);
             igniteConfiguration.setDataStorageConfiguration(nativePersistence);
         }
         CacheConfiguration<PersonKeyClass, Person> personCacheConfiguration = new CacheConfiguration<>();
         personCacheConfiguration.setName(personCacheName);
-//        personCacheConfiguration.setReadThrough(true);
+        personCacheConfiguration.setReadThrough(true);
         personCacheConfiguration.setSqlSchema(personSchemaName);
         personCacheConfiguration.setIndexedTypes(PersonKeyClass.class, Person.class);
         personCacheConfiguration.setCacheStoreFactory(cassandraCacheStoreFactory());
