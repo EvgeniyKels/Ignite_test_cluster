@@ -2,6 +2,8 @@ package kls.ignitenode.configuration;
 import kls.ignitenode.model.entities.Person;
 import kls.ignitenode.model.entities.PersonKeyClass;
 import org.apache.commons.io.FileUtils;
+import org.apache.ignite.cache.CacheAtomicityMode;
+import org.apache.ignite.cache.CacheMode;
 import org.apache.ignite.cache.store.cassandra.CassandraCacheStoreFactory;
 import org.apache.ignite.cache.store.cassandra.datasource.DataSource;
 import org.apache.ignite.cache.store.cassandra.persistence.KeyValuePersistenceSettings;
@@ -69,6 +71,9 @@ public class TestNodeConfiguration {
         personCacheConfiguration.setSqlSchema(personSchemaName);
         personCacheConfiguration.setIndexedTypes(PersonKeyClass.class, Person.class);
         personCacheConfiguration.setCacheStoreFactory(cassandraCacheStoreFactory());
+//        personCacheConfiguration.setBackups(0); // 0-no backups, 1-every key has 1 backup
+//        personCacheConfiguration.setCacheMode(CacheMode.PARTITIONED); // partitioned by default
+//        personCacheConfiguration.setAtomicityMode(CacheAtomicityMode.ATOMIC); //atomic by default
         igniteConfiguration.setCacheConfiguration(personCacheConfiguration);
         return igniteConfiguration;
     }

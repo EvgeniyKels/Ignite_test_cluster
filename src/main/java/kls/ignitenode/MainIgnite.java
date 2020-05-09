@@ -28,7 +28,7 @@ public class MainIgnite {
         Ignite ignite = Ignition.start(igniteConfiguration.igniteConfiguration());
         ignite.cluster().active(true);
         IgniteCache <?, ?> personCacheName = ignite.cache(env.getProperty("personCacheName"));
-//        personCacheName.clear(); //TODO in real action may be not need because will nt load all old keys
+//        personCacheName.clear(); //TODO in real action may be not need because will not load all old keys
         personCacheName.loadCache(null);
         ScheduledExecutorService executorService =
                 Executors.newSingleThreadScheduledExecutor();
